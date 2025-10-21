@@ -13,9 +13,10 @@ class ProductoController extends Controller
      */
     public function index()
     {
+        return new ProductoCollection(Producto::where('disponible', 1)->get());
         //return new ProductoCollection(Producto::all());
         //return new ProductoCollection(Producto::orderBy('id', 'DESC')->paginate(10));
-        return new ProductoCollection(Producto::where('disponible', 1)->orderBy('id','DESC')->paginate(10)); // leer si estan disponible despues del borrado logico
+        //return new ProductoCollection(Producto::where('disponible', 1)->orderBy('id','DESC')->paginate(10)); // leer si estan disponible despues del borrado logico
     }
 
     /**
