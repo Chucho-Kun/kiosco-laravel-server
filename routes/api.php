@@ -7,9 +7,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\Contracts\HasApiTokens;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+// Route::get('/user', function (Request $request) {
+//     return $request->user();
+// })->middleware('auth:sanctum');
+
+Route::middleware('auth:sanctum')->group(function() {
+    
+    Route::get('/user', function(Request $request) {
+        return $request->user();
+    });
+
+    Route::post('/logout', [AuthController::class, 'logout']);
+    
+});
 
 //Route::get('/categorias' , [ CategoriaController::class, 'index']);
 
