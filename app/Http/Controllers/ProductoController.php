@@ -24,7 +24,7 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -32,7 +32,8 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-        //
+        dd($producto->all());
+        //return response()->json(['mensaje' => 'se debe poder prra']);
     }
 
     /**
