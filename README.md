@@ -74,8 +74,6 @@ commands:
   - php artisan db:seed
   - php artisan key:generate
   - php artisan storage:link
-  - php artisan livewire:publish
-  - cp -r vendor/livewire/livewire/dist public/livewire
   - npm install
   - npm run build
 ```
