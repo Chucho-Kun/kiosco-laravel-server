@@ -13,3 +13,26 @@ sail artisan config:publish cors
 sail artisan route:cache
 sail artisan vendo:publish --provider="Laravel\Sanctum\SanctumServideProvider"
 ```
+## Relating different databases
+### app/Models/Pedido.php
+```
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Pedido extends Model
+{
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function productos()
+    {
+        return $this->belongsToMany(Producto::class, 'pedido_productos')->withPivot('cantidad');
+    }
+}
+
+```
