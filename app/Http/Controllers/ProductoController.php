@@ -11,9 +11,12 @@ class ProductoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return new ProductoCollection(Producto::where('disponible', 1)->get());
+
+        $estado = $request->query('disponible', 1);
+        return new ProductoCollection(Producto::where('disponible', $estado)->get());
+
         //return new ProductoCollection(Producto::all());
         //return new ProductoCollection(Producto::orderBy('id', 'DESC')->paginate(10));
         //return new ProductoCollection(Producto::where('disponible', 1)->orderBy('id','DESC')->paginate(10)); // leer si estan disponible despues del borrado logico
@@ -41,7 +44,13 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto)
     {
-        //
+        $switch = ( $producto->disponible === 0 ) ? 1 : 0 ;
+
+        $producto->disponible = $switch;
+        $producto->save();
+        return [
+            'producto' => $producto
+        ];
     }
 
     /**
